@@ -12,12 +12,16 @@ export default {
     options: {
       type: Object,
     },
+    chartColors:{
+      type: Object
+    }
   },
 
   mounted() {
     //usa o reverse pq a API manda os dados em ordem decresc. e quero em ordem crescente
     const dates = this.chartData.map((d) => d.date).reverse();
     const totals = this.chartData.map((d) => d.total).reverse();
+    const {borderColor, pointsBorderColor, pointsBackgroundColor, backgroundColor}= this.chartColors
 
     this.renderChart(
       {
@@ -26,6 +30,10 @@ export default {
           {
             label: this.label,
             data: totals,
+            borderColor:borderColor,
+            pointsBorderColor:pointsBorderColor,
+            pointsBackgroundColor:pointsBackgroundColor,
+            backgroundColor:backgroundColor
           },
         ],
       },
